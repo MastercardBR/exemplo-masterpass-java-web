@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<title>Card data</title>
+	</head>
+	<body>
+		
+		Card data:
+		
+		<ul>
+			<li>$data.getAccountNumber()</li>
+			<li>$data.getBrandName()</li>
+			<li>$data.getLastFour()</li>
+			<li>$data.getCardHolderName()</li>
+			<li>$data.getBrandId()</li>
+		</ul>
+		
+	</body>
+</html>
