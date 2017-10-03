@@ -53,7 +53,7 @@ public class Api
 			KeyStore ks = KeyStore.getInstance("PKCS12");
 			ks.load(fis, this.password.toCharArray());
 			
-			k = (PrivateKey) ks.getKey("defaultSandboxKey", password.toCharArray());
+			k = (PrivateKey) ks.getKey(Config.get("alias").toString(), password.toCharArray());
 			
 		}
 		

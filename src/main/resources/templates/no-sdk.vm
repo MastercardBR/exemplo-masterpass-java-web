@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<title>Response</title>
+	</head>
+	<body>
+		
+		Curl requests to be tested
+		
+		<ul>
+			<li>Payment Data</li>
+			<li>$payment_data.toString()</li>
+			<li>&nbsp;</li>
+			<li>Postback</li>
+			<li>$postback_data.toString()</li>
+		</ul>
+		
+	</body>
+</html>

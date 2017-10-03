@@ -6,6 +6,8 @@ import static spark.debug.DebugScreen.enableDebugScreen;
 
 import com.br.mastercard.controller.ExpressCheckoutController;
 import com.br.mastercard.controller.StandardCheckoutController;
+import com.br.mastercard.controller.StandardCheckoutControllerNoSdk;
+import com.br.mastercard.nosdk.request.OAuthRequest;
 
 
 public class App
@@ -16,6 +18,7 @@ public class App
 		
 		Config.set("consumerKey", "x9CN7cXABdzeOpjVrAOa7v4pHhpkzLNTDcMEIOY60e2a0e46!10e8bc47714141be983e984732a73a4c0000000000000000");
 		Config.set("password", "wDWmmgi3AY0L5qwolJXw");
+		Config.set("alias", "defaultSandboxKey");
 		Config.set("path", "/sandbox.p12");
 		Config.set("checkoutId", "d072ca48e19b49c49bb76ea4513b42d1");
 		Config.set("cartId", "21345");
@@ -43,7 +46,10 @@ public class App
         get("/callback-standard", StandardCheckoutController.handleCallback);
         get("/express", ExpressCheckoutController.serveStandardPage);
         get("/callback-express", ExpressCheckoutController.handleCallback);
-  
+        
+        get("/standard-nosdk", StandardCheckoutControllerNoSdk.serveStandardPage);
+        get("/callback-standard-nosdk", StandardCheckoutControllerNoSdk.handleCallback);
+        
         enableDebugScreen();
     	
     }
