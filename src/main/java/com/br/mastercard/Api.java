@@ -1,15 +1,11 @@
 package com.br.mastercard;
 
 import java.io.FileInputStream;
-import java.io.InputStream;
-import java.security.Key;
 import java.security.KeyStore;
 import java.security.PrivateKey;
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.Enumeration;
 
 import com.mastercard.merchant.checkout.PaymentDataApi;
 import com.mastercard.merchant.checkout.PostbackApi;
@@ -75,23 +71,34 @@ public class Api
         return payment.getCard();
     }
     
-    public Boolean performPostback(String transactionId, String paymentCode, Boolean status) throws Exception
+    private Postback createPostback( String transactionId, String paymentCode, Boolean status )
     {
-    	
-    	
     	ZonedDateTime zdt = LocalDateTime.now().atZone(ZoneId.systemDefault());
     	java.util.Date date = java.util.Date.from(zdt.toInstant());
-    	 
-    	Postback postback = new Postback()
-    	                .transactionId(transactionId)
-    	                .currency(Config.get("currency").toString())
-    	                .paymentCode(paymentCode)
-    	                .paymentSuccessful(status)
-    	                .amount( Double.valueOf(Config.get("amount").toString()))
-    	                .paymentDate(date);
-    	 
-    	PostbackApi.create(postback);
     	
+    	return new Postback()
+                .transactionId(transactionId)
+                .currency(Config.get("currency").toString())
+                .paymentCode(paymentCode)
+                .paymentSuccessful(status)
+                .amount( Double.valueOf(Config.get("amount").toString()))
+                .paymentDate(date);
+    	
+    	
+    }
+    
+    public Boolean performPostback(String transactionId, String paymentCode, Boolean status) throws Exception
+    {
+    	PostbackApi.create(this.createPostback(transactionId, paymentCode, status));
+    	return true;
+    }
+    
+    public Boolean performPostback(String precheckoutTransactionId, String transactionId, String paymentCode, Boolean status) throws Exception
+    {
+    	Postback p = this.createPostback(transactionId, paymentCode, status);
+    	p.preCheckoutTransactionId(precheckoutTransactionId);
+    	
+    	PostbackApi.create(p);
     	return true;
     }
 	

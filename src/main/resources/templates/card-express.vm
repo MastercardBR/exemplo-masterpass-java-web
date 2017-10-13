@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<title>Card data</title>
+	</head>
+	<body>
+		
+		Card data:
+		
+		<ul>
+			<li>$card.getAccountNumber()</li>
+			<li>$card.getBrandName()</li>
+			<li>$card.getLastFour()</li>
+			<li>$card.getCardHolderName()</li>
+			<li>$card.getBrandId()</li>
+		</ul>
+		
+		<p>PairingID novo: <a href="/new-express?pairingId=$pairingId">Nova chamada</a></p>
+		
+	</body>
+</html>

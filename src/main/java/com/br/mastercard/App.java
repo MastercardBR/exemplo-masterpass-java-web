@@ -28,6 +28,7 @@ public class App
 		Config.set("supress3d", true);
 		Config.set("acceptedCards", "master,amex,diners,discover,jcb,maestro,visa");
 		Config.set("projectdir", System.getProperty("user.dir"));
+		Config.set("transactionId", "123456");
 		
 		
 	}
@@ -46,6 +47,7 @@ public class App
         get("/callback-standard", StandardCheckoutController.handleCallback);
         get("/express", ExpressCheckoutController.serveStandardPage);
         get("/callback-express", ExpressCheckoutController.handleCallback);
+        get("/new-express", ExpressCheckoutController.handleNewTransaction);
         
         get("/standard-nosdk", StandardCheckoutControllerNoSdk.serveStandardPage);
         get("/callback-standard-nosdk", StandardCheckoutControllerNoSdk.handleCallback);
