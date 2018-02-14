@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<script type="text/javascript" src="https://sandbox.static.masterpass.com/integration/merchant.js"></script>
+		<script type="text/javascript" src="https://sandbox.masterpass.com/integration/merchant.js"></script>
 	</head>
 	<body>
 		<p class="message"></p>
